@@ -4,7 +4,7 @@ import { Firestore } from 'firebase-admin/firestore';
 import { getFirestore, getDAO } from './di/factory';
 import { FirestoreDao } from './di/firestoredao.class';
 
-export class ViewModel {
+export class SubmitFormViewModel {
   constructor(
     private db: FirestoreDao,
   ) { }
@@ -27,7 +27,7 @@ export const submitform = onRequest(async (request: Request, response: express.R
   const firestore: Firestore = getFirestore();
   const db: FirestoreDao = getDAO(firestore);
 
-  const view = new ViewModel(db);
+  const view = new SubmitFormViewModel(db);
   await view.onSubmitForm(req, res).catch((e) => {
     response.status(400).json({
       "status": "error",
