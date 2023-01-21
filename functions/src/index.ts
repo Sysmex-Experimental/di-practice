@@ -1,24 +1,36 @@
 import * as express from 'express';
 import { onRequest, Request } from 'firebase-functions/v2/https';
-import { DocumentReference, Firestore } from 'firebase-admin/firestore';
+import { Firestore } from 'firebase-admin/firestore';
+import { getFirestore, getDAO } from './di/factory';
+import { FirestoreDao } from './di/firestoredao.class';
 
-import { applicationDefault, App, Credential } from 'firebase-admin/app';
-import * as firebase from 'firebase-admin';
+export class ViewModel {
+  constructor(
+    private db: FirestoreDao,
+  ) { }
 
-const credential: Credential = applicationDefault();
-// Firebase App
-const admin: App = firebase.initializeApp({
-  credential,
-});
+  async onSubmitForm(
+    request: Request,
+    response: express.Response,
+  ): Promise<void> {
+    const docPath: string = `form/${Date.now()}`;
+    const data: any = request.body;
 
-// Firestore
-const firestore: Firestore = (admin as any).firestore();
+    await db.update(docPath, data);
 
+    response.json({
+      "status": "success"
+    });
+  }
+}
 export const submitform = onRequest(async (request: Request, response: express.Response) => {
-  const docRef: DocumentReference = firestore.doc(`form/${Date.now()}`)
-  await docRef.set(request.body);
+  const firestore: Firestore = getFirestore();
+  const db: FirestoreDao = getDAO(firestore);
 
-  response.json({
-    "status": "success"
+  const view = new ViewModel(db);
+  await view.onSubmitForm(req, res).catch((e) => {
+    response.status(400).json({
+      "status": "error",
+    });
   });
 });
