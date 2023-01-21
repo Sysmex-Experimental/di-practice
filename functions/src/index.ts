@@ -2,7 +2,7 @@ import * as express from 'express';
 import { onRequest, Request } from 'firebase-functions/v2/https';
 import { Firestore } from 'firebase-admin/firestore';
 import { getFirestore, getDAO } from './di/factory';
-import { FirestoreDao } from './di/firestoredao.class';
+import { FirestoreDao } from './di/firestoredao';
 
 export class SubmitFormViewModel {
   constructor(

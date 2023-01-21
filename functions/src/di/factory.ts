@@ -1,7 +1,7 @@
 import { applicationDefault, App, Credential } from 'firebase-admin/app';
 import * as firebase from 'firebase-admin';
 import { Firestore } from 'firebase-admin/firestore';
-import { FirestoreDao } from './firestoredao.class';
+import { FirestoreDao } from './firestoredao';
 
 export const getFirestore = (): Firestore => {
   const credential: Credential = applicationDefault();
