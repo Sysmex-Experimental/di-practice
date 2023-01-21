@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "local": "alpha-go-link-dev",
+    "default": "alpha-go-link-dev"
+  },
+  "targets": {},
+  "etags": {}
+}

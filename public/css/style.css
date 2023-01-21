@@ -1,0 +1,25 @@
+form > ul {
+  list-style: none;
+  width: 320px;
+  padding: 0px;
+}
+
+form > ul > li {
+  display: block;
+  white-space: pre;
+}
+form > ul > li > input {
+  width: calc(100% - 1em);
+  margin: 0.5em auto;
+  padding: 0.5em;
+}
+form > ul > li > textarea {
+  width: calc(100% - 1em);
+  padding: 0.5em;
+  height: 6em;
+}
+
+form input, button, textarea {
+  border-radius: 5px;
+  border: 1px solid gray;
+}
