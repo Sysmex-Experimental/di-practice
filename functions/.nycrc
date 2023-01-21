@@ -5,9 +5,7 @@
   ],
   "exclude": [
     "**/*.spec.ts",
-    "src/firebase.config.ts",
-    "src/index.ts",
-    "src/const/**"
+    "src/di/factory.ts"
   ],
   "reporter": ["text", "html"]
 }

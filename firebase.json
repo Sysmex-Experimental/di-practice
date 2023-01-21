@@ -45,11 +45,11 @@
     "rewrites": [
       {
         "source": "/api/submit",
-        "function": "submitform"
+        "function": "onsubmitform"
       },
       {
         "source": "/api/submit/",
-        "function": "submitform"
+        "function": "onsubmitform"
       }
     ]
   }
